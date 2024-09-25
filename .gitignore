@@ -1,0 +1,44 @@
+﻿## Ignorar directorios de compilación y paquetes
+bin/
+obj/
+**/bin/
+**/obj/
+.vscode/
+
+## Ignorar paquetes de NuGet descargados
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+## Ignorar archivos de publicación
+publish/
+out/
+
+## Archivos de usuario y del entorno de desarrollo
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+.vscode/
+.env
+
+## Configuración de compilación de Visual Studio
+.project/
+*.csproj.user
+*.vcxproj.user
+
+## Archivos de log y temporales
+*.log
+*.tmp
+
+## Ignorar las configuraciones de IIS y otras locales
+*.config
+appsettings.Development.json
+
+## Archivos relacionados con el caché y la restauración
+.DS_Store
+.idea/
+.idea/*
+node_modules/
