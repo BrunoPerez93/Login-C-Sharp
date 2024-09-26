@@ -1,0 +1,40 @@
+﻿@model LoginApp.ViewModels.CarViewModel
+
+<form asp-controller="Car" asp-action="@(Model.IdCar == 0 ? "AddCar" : "EditCar")" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="IdCar" />
+
+    <input class="form-control mb-3" type="text" placeholder="Brand" required asp-for="Brand" />
+    <span asp-validation-for="Brand" class="text-danger"></span>
+
+    <input class="form-control mb-3" type="text" placeholder="Model" required asp-for="Model" />
+    <span asp-validation-for="Model" class="text-danger"></span>
+
+    <input class="form-control mb-3" type="number" placeholder="Year" required asp-for="Year" />
+    <span asp-validation-for="Year" class="text-danger"></span>
+
+    <input class="form-control mb-3" type="number" placeholder="KM" required asp-for="Km" />
+    <span asp-validation-for="Km" class="text-danger"></span>
+
+    <input class="form-control mb-3" type="text" placeholder="Color" required asp-for="Color" />
+    <span asp-validation-for="Color" class="text-danger"></span>
+
+    <div class="form-check mb-3">
+        <input class="form-check-input" id="usedCheckbox" type="checkbox" asp-for="Used" />
+        <label class="form-check-label" for="usedCheckbox">Usado</label>
+    </div>
+
+    <input class="form-control mb-3" type="file" accept="image/*" asp-for="Images" multiple />
+    <span asp-validation-for="Images" class="text-danger"></span>
+
+    <div class="d-grid gap-2 mb-3">
+        <button class="btn btn-primary" type="submit">@((Model.IdCar == 0) ? "Add" : "Update")</button>
+        <a class="btn btn-secondary" asp-action="GetCars" asp-controller="Car" >Cancel</a>
+    </div>
+
+    @if (ViewData["Mensaje"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewData["Mensaje"]
+        </div>
+    }
+</form>

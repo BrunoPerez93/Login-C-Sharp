@@ -1,0 +1,53 @@
+﻿@model IEnumerable<LoginApp.Models.Car>
+
+<style>
+    .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .carousel-inner {
+        width: 100%;
+        height: 200px;
+    }
+
+    .carousel-item {
+        width: 100%;
+        height: 100%;
+    }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="mb-0 mx-auto">List of Cars</h1>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("AddCar", "Car")'">
+        Add New Car
+    </button>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <partial name="_CardsCar"/>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('.carousel').each(function() {
+                var $carousel = $(this);
+                var itemCount = $carousel.find('.carousel-item').length;
+
+                if (itemCount > 1) {
+                    new bootstrap.Carousel($carousel[0], {
+                        interval: 5000
+                    });
+                }
+            });
+        });
+    </script>
+}

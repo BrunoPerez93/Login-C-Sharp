@@ -1,0 +1,52 @@
+﻿@foreach (var car in Model)
+{
+    <div class="col">
+        <div class="card h-100">
+            @if (car.Images != null && car.Images.Count > 0)
+            {
+                <div id="carCarousel@(car.IdCar)" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @for (int i = 0; i < car.Images.Count; i++)
+                        {
+                            var base64Image = Convert.ToBase64String(car.Images[i]);
+                            var imgSrc = $"data:image/png;base64,{base64Image}";
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <img src="@imgSrc" class="d-block w-100 card-img-top" alt="Car image @(i + 1)">
+                            </div>
+                        }
+                    </div>
+                    @if (car.Images.Count > 1)
+                    {
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel@(car.IdCar)" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carCarousel@(car.IdCar)" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="card-img-top d-flex align-items-center justify-content-center bg-light">
+                    <p class="text-muted">No image available</p>
+                </div>
+            }
+            <div class="card-body text-center">
+                <h5 class="card-title">@car.Brand - @car.Model</h5>
+                <p class="card-text">
+                    <strong>Year:</strong> @car.Year<br />
+                    <strong>Color:</strong> @car.Color<br />
+                    <strong>Kilometers:</strong> @car.Km<br />
+                    <strong>Condition:</strong> @(car.Used ? "Used" : "New")
+                </p>
+            </div>
+            <div class="p-2 text-center">
+                <a class="btn btn-primary" asp-controller="Car" asp-action="EditCar" asp-route-id="@car.IdCar">Edit</a>
+                <button class="btn btn-secondary">Delete</button>
+            </div>
+        </div>
+    </div>
+}

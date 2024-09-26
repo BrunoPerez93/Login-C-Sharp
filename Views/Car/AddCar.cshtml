@@ -1,0 +1,18 @@
+﻿@model LoginApp.ViewModels.CarViewModel
+
+
+<div class="row mt-5 justify-content-center">
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-header">
+                Add Car
+            </div>
+            <div class="card-body">
+                <partial name="_FormAdd"/>
+                @section Scripts {
+                    <partial name="_ValidationScriptsPartial" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
